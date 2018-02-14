@@ -123,7 +123,11 @@ void readCalibrationData(int fd, bme280_calib_data *data) {
 
 float compensateTemperature(int32_t t_fine) {
   float T  = (t_fine * 5 + 128) >> 8;
-  return T/100;
+   if( T > -5000 && T < 5000 ) {
+      return T/100;
+   } else {
+      printf("NO");
+   }  
 }
 
 float compensatePressure(int32_t adc_P, bme280_calib_data *cal, int32_t t_fine) {
