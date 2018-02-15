@@ -79,7 +79,7 @@ int main() {
   float p = compensatePressure(raw.pressure, &cal, t_fine) / 100; // hPa
   float h = compensateHumidity(raw.humidity, &cal, t_fine);       // %
   float a = getAltitude(p);                         // meters
-if ( t > -50 && t < 50){
+if ( t > -40 && t < 50 && h != 0 && p > 800 && p < 1100){
   printf("{\"sensor\":\"bme280\", \"humidity\":%.2f, \"pressure\":%.2f,"
     " \"temperature\":%.2f, \"altitude\":%.2f, \"timestamp\":%d}\n",
     h, p, t, a, (int)time(NULL));
